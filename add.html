@@ -38,7 +38,10 @@
             <ul class="nav navbar-nav navbar-right">
 
             </ul>
-
+            <span class="navbar-form navbar-right">
+            <input type="button" class="btn btn-danger" value="ADD"
+                   onclick="insertBook()">
+          </span>
         </div>
     </div>
 </nav>
@@ -48,7 +51,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="index.html">Book Search <span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="#" onclick="updateBook()">Add Book <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="add.html">Add Book <span class="sr-only">(current)</span></a></li>
             </ul>
 
         </div>
@@ -59,17 +62,22 @@
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Cover</th>
+                        <th>Isbn</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Price</th>
-
                     </tr>
                     </thead>
                     <tbody>
-
+                    <tr>
+                    <td><input type="text" id="isbn"></td>
+                    <td><input type="text" id="title"></td>
+                    <td><input type="text" id="author"></td>
+                    <td><input type="text" id="price"></td>
+                    </tr>
                     </tbody>
                 </table>
+
             </div>
         </div>
     </div>

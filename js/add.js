@@ -1,24 +1,25 @@
 
-    function updateBook(){
-        $("tbody").empty();
-
-        var titlebox=$("<input />").attr("type", "text");
-        var authorbox=$("<input />").attr("type", "text");
-        var pricebox=$("<input />").attr("type", "text");
-
-
-        var tr=$("<tr></tr>");
-        var img=$("<img />");
-        var imgTd=$("<td></td>").append(img);
-        var titleTd=$("<td></td>").append(titlebox);
-        var authorTd=$("<td></td>").append(authorbox);
-        var priceTd=$("<td></td>").append(pricebox);
-
-        tr.append(imgTd);
-        tr.append(titleTd);
-        tr.append(authorTd);
-        tr.append(priceTd);
-
-        $("tbody").append(tr);
-
+    function insertBook(){
+        $.ajax({
+            url: "http://localhost:8080/book/bookInsert",
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {
+                isbn: $("#isbn").val(),
+                title: $("#title").val(),
+                author: $("#author").val(),
+                price: $("#price").val()
+            },
+            success: function(){
+                alert("Addition Complete");
+                $("isbn").val("")
+                $("title").val("")
+                $("author").val("")
+                $("price").val("")
+            },
+            error: function(){
+                alert("It is wrong");
+            }
+        });
     }
