@@ -17,6 +17,7 @@
                 $("title").val("")
                 $("author").val("")
                 $("price").val("")
+                $(location).attr('href', "add.html")
             },
             error: function(){
                 alert("It is wrong");
