@@ -13,8 +13,6 @@
 					$("tbody").empty();
 					for(var i=0; i<result.length; i++){
 
-
-
 					var tr=$("<tr></tr>").attr("data-isbn", result[i].isbn);
 					var img=$("<img />").attr("src", result[i].img);
 					var imgTd=$("<td></td>").append(img);
@@ -165,6 +163,13 @@
 						});
 						var detbtntd=$("<td></td>").append(detbtn);
 
+						var revbtn=$("<input />").attr("type", "button").attr("value", "REVIEW").attr("class", "btn-xs, btn-warning");
+						revbtn.on("click", function(){
+
+							$(location).attr("href", "review.html");
+
+						});
+						var revbtntd=$("<td></td>").append(revbtn);
 
 
 					tr.append(imgTd);
@@ -174,6 +179,7 @@
 					tr.append(delbtntd);
 					tr.append(updatebtntd);
 					tr.append(detbtntd);
+					tr.append(revbtntd);
 
 					$("tbody").append(tr);
 					};

@@ -18,7 +18,7 @@
                 success: function(result) {
                     if (result) {
                     alert("Login Complete");
-                    $(location).attr('href', "review.html");
+                    $(location).attr('href', "index.html");
                 }else{
                         alert("It is wrong 1");
                     }

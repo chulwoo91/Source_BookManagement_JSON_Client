@@ -17,7 +17,7 @@
 
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <script src="js/add.js"></script>
+    <script src="js/review.js"></script>
     <script src="js/login.js"></script>
 
 </head>
@@ -40,9 +40,10 @@
 
             </ul>
             <span class="navbar-form navbar-right">
-            <input type="button" class="btn btn-info" value="ADD"
-                   onclick="insertBook()">
-                <button class="btn btn-danger" onclick="logout()">Logout</button>
+            <input type="text" id="keyword" class="form-control" placeholder="SEARCH..."
+                   onkeyup="searchReview()">
+             <button class="btn btn-danger" onclick="logout()">Logout</button>
+          </span>
           </span>
         </div>
     </div>
@@ -53,30 +54,28 @@
         <div class="col-sm-3 col-md-2 sidebar">
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="index.html">Book Search <span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="review.html">Write a review <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="add.html">Add Book <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="write.html">Write a review <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="keyword.html">Review by keyword <span class="sr-only">(current)</span></a></li>
+                <li class="active"><a href="delete.html">Delete a review <span class="sr-only">(current)</span></a></li>
             </ul>
 
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-            <h2 class="sub-header">ADD NEW BOOK</h2>
+            <h2 class="sub-header">Review of the book</h2>
             <div class="table-responsive">
                 <table class="table table-striped">
                     <thead>
                     <tr>
-                        <th>Isbn</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Price</th>
+                        <th>ISBN</th>
+                        <th>Book Title</th>
+                        <th>ID</th>
+                        <th>Review</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <tr>
-                    <td><input type="text" id="isbn"></td>
-                    <td><input type="text" id="title"></td>
-                    <td><input type="text" id="author"></td>
-                    <td><input type="text" id="price"></td>
-                    </tr>
+
                     </tbody>
                 </table>
 

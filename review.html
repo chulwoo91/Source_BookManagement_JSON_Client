@@ -17,7 +17,7 @@
 
         <!-- Custom styles for this template -->
         <link href="css/dashboard.css" rel="stylesheet">
-        <script src="js/index.js"></script>
+        <script src="js/review.js"></script>
         <script src="js/login.js"></script>
 
     </head>
@@ -41,7 +41,7 @@
             </ul>
             <span class="navbar-form navbar-right">
             <input type="text" id="keyword" class="form-control" placeholder="SEARCH..."
-                   onkeyup="searchBook()">
+                   onkeyup="reviewBook()">
              <button class="btn btn-danger" onclick="logout()">Logout</button>
           </span>
         </div>
@@ -54,7 +54,6 @@
             <ul class="nav nav-sidebar">
                 <li class="active"><a href="index.html">Book Search <span class="sr-only">(current)</span></a></li>
                 <li class="active"><a href="add.html">Add Book <span class="sr-only">(current)</span></a></li>
-                <li class="active"><a href="review.html">Write a review <span class="sr-only">(current)</span></a></li>
             </ul>
 
         </div>
@@ -69,10 +68,9 @@
                         <th>Title</th>
                         <th>Author</th>
                         <th>Price</th>
+                        <th>Write</th>
+                        <th>Read</th>
                         <th>Delete</th>
-                        <th>Update</th>
-                        <th>Details</th>
-                        <th>Review</th>
                     </tr>
                     </thead>
                     <tbody>
