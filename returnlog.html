@@ -1,0 +1,49 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>Book Management System</title>
+
+    <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+            crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <link href="css/signin.css" rel="stylesheet">
+    <script src="js/loanlogin.js"></script>
+
+</head>
+
+<body>
+
+<div class="container">
+
+    <span class="form-signin">
+        <h2 class="form-signin-heading">Log in to Return</h2>
+        <label for="user" class="sr-only">ID</label> &nbsp;
+        <input type="id" id="user" class="form-control" placeholder="ID" required autofocus><br>
+        <label for="pass" class="sr-only">PW</label>
+        <input type="password" id="pass" class="form-control" placeholder="Password" required>
+        <button class="btn btn-danger" onclick="loanlogout()">login</button>
+        <button class="btn btn-warning" onclick="location.href='loan.html'">cancel</button>
+    </span>
+
+</div>
+
+</body>
+</html>

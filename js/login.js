@@ -1,6 +1,34 @@
  // 로그인
  // 값을 입력하면 -> DB에 있는 id랑 pw랑 비교를 한다.
  // 그 뒤에 서세스 시에는 리뷰로 출발, 에러시에는 롱롱롱
+ $( document ).ready(function() {
+     isSession();
+ });
+
+ function isSession() {
+     $.ajax({
+         url:"http://localhost:8080/book/checkLOG",
+         type:"GET",
+         dataType:"jsonp",
+         jsonp:"callback",
+         success:function (result) {
+             console.log(result.id);
+
+             if(result.id==null){
+                 console.log("세션 없음");
+
+             }else{
+                 console.log("세션 존재함");
+                 console.log(result.id);
+
+                 $("#mytoggle").text(result.id);
+             }
+         },
+         error:function () {
+             consol.log("세션 점검 실패");
+         }
+     });
+ }
 
         function login(){
             var user=$("#user").val();

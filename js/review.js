@@ -1,6 +1,35 @@
 // 로그인을 하고 리뷰 페이지로 들어간다.
 //리뷰 페이지에서 페이지 검색을
 
+$( document ).ready(function() {
+    isSession();
+});
+
+function isSession() {
+    $.ajax({
+        url:"http://localhost:8080/book/checkLOG",
+        type:"GET",
+        dataType:"jsonp",
+        jsonp:"callback",
+        success:function (result) {
+            console.log(result.id);
+
+            if(result.id==null){
+                console.log("세션 없음");
+
+            }else{
+                console.log("세션 존재함");
+                console.log(result.id);
+
+                $("#mytoggle").text(result.id);
+            }
+        },
+        error:function () {
+            consol.log("세션 점검 실패");
+        }
+    });
+}
+
 function reviewBook(){
     if(event.keyCode==13){
         $.ajax({
