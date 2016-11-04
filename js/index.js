@@ -13,6 +13,8 @@
 					$("tbody").empty();
 					for(var i=0; i<result.length; i++){
 
+
+
 					var tr=$("<tr></tr>").attr("data-isbn", result[i].isbn);
 					var img=$("<img />").attr("src", result[i].img);
 					var imgTd=$("<td></td>").append(img);
@@ -67,6 +69,7 @@
 					var delbtntd=$("<td></td>").append(delbtn);
 
 					var updatebtn=$("<input />").attr("type", "button").attr("value", "UPDATE").attr("class", "btn-xs, btn-info");
+
 						updatebtn.on("click", function(){
 
 							var title=$(this).parent().parent().find("td:nth-child(2)").text();
@@ -75,16 +78,29 @@
 							var titlebox=$("<input />").attr("type", "text").val(title);
 							var authorbox=$("<input />").attr("type", "text").val(author);
 							var pricebox=$("<input />").attr("type", "text").val(price);
-							pricebox.on("keyup", function(){
-								if(event.keyCode==13){
+
+							$(this).parent().parent().find("td:nth-child(2)").text("");
+							$(this).parent().parent().find("td:nth-child(2)").append(titlebox);
+
+							$(this).parent().parent().find("td:nth-child(3)").text("");
+							$(this).parent().parent().find("td:nth-child(3)").append(authorbox);
+
+							$(this).parent().parent().find("td:nth-child(4)").text("");
+							$(this).parent().parent().find("td:nth-child(4)").append(pricebox);
+							//$(this).parent().parent().find("[type=button]").attr("disabled", "disabled");
+
+							$(this).on("click", function(){
+
 									//update 처리
 									//DB처리를 하고 AJAX를 호출해서 서버프로그램을 실행시켜 Database의 데이터 변경
 									//변경된 책 가격, ISBN값이 필요
 									var isbn=$(this).parent().parent().attr("data-isbn");
 									var title=$(titlebox).val();
 									var author=$(authorbox).val();
-									var price=$(this).val();
+									var price=$(pricebox).val();
+
 									var tr=$(this).parent().parent();
+
 									$.ajax({
 										url:"http://localhost:8080/book/bookUpdate",
 										type:"GET",
@@ -110,16 +126,7 @@
 										}
 									});
 
-								}
 							});
-
-							$(this).parent().parent().find("td:nth-child(2)").text("");
-							$(this).parent().parent().find("td:nth-child(2)").append(titlebox);
-							$(this).parent().parent().find("td:nth-child(3)").text("");
-							$(this).parent().parent().find("td:nth-child(3)").append(authorbox);
-							$(this).parent().parent().find("td:nth-child(4)").text("");
-							$(this).parent().parent().find("td:nth-child(4)").append(pricebox);
-							$(this).parent().parent().find("[type=button]").attr("disabled", "disabled");
 
 						});
 					var updatebtntd=$("<td></td>").append(updatebtn);
@@ -166,7 +173,7 @@
 						var revbtn=$("<input />").attr("type", "button").attr("value", "REVIEW").attr("class", "btn-xs, btn-warning");
 						revbtn.on("click", function(){
 
-							$(location).attr("href", "review.html");
+							$(location).attr("href", "review.html")
 
 						});
 						var revbtntd=$("<td></td>").append(revbtn);
