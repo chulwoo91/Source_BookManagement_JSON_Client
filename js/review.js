@@ -220,11 +220,38 @@ function beforedeleteReview(){
                     var userTd=$("<td></td>").text(result[i].user)
                     var titleTd=$("<td></td>").text(result[i].title);
                     var reviewTd=$("<td></td>").text(result[i].review);
+                    var delbtn=$("<input />").attr("type", "button").attr("value", "DELETE").attr("class", "btn-danger");
+                    delbtn.on("click", function(){
+
+                        var isbn=$(this).parent().parent().attr("data-isbn");
+                        var obj=this;
+
+                        $.ajax({
+                            url: "http://localhost:8080/book/commentDelete",
+                            type: "GET",
+                            dataType: "jsonp",
+                            jsonp: "callback",
+                            data: {
+                                isbn: isbn
+                            },
+                            success: function(){
+                                alert("Delete Complete");
+                                $(obj).parent().parent().remove();
+                            },
+                            error: function(){
+                                alert("Delete fail");
+                            }
+                        })
+
+                    });
+                    var delbtntd=$("<td></td>").append(delbtn);
+
 
                     tr.append(isbnTd);
                     tr.append(userTd);
                     tr.append(titleTd);
                     tr.append(reviewTd);
+                    tr.append(delbtntd);
 
                     $("tbody").append(tr);
                 };
@@ -236,35 +263,5 @@ function beforedeleteReview(){
     }
 }
 
-function deletereview(){
 
-    var delbtn=$("<input />").attr("type", "button").attr("value", "DELETE").attr("class", "btn-danger");
-    delbtn.on("click", function(){
-
-        var isbn=$(this).parent().parent().attr("data-isbn");
-        var obj=this;
-
-        $.ajax({
-            url: "http://localhost:8080/book/commentDelete",
-            type: "GET",
-            dataType: "jsonp",
-            jsonp: "callback",
-            data: {
-                isbn: isbn
-            },
-            success: function(){
-                alert("Delete Complete");
-                $(obj).parent().parent().remove();
-            },
-            error: function(){
-                alert("Delete fail");
-            }
-        })
-
-    });
-    var delbtntd=$("<td></td>").append(delbtn);
-
-    tr.append(delbtntd);
-
-}
 
