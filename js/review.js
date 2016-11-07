@@ -147,7 +147,7 @@ function addreview(){
             review: $("#Review").val()
         },
         success: function(){
-            alert("Addition Complete");
+            alert("Review Addition Complete");
             $("isbn").val("")
             $("id").val("")
             $("title").val("")
@@ -264,7 +264,8 @@ function beforedeleteReview(){
                                 isbn: isbn
                             },
                             success: function(){
-                                alert("Delete Complete");
+                                alert("Do You Want To Delete Your Review?");
+                                alert("Review Completely Deleted");
                                 $(obj).parent().parent().remove();
                             },
                             error: function(){

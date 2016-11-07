@@ -57,6 +57,60 @@
             });
         }
 
+ function login2(){
+     var user=$("#user").val();
+     var pw=$("#pass").val()
+
+     $.ajax({
+         url: "http://localhost:8080/book/logIn",
+         type: "GET",
+         dataType: "jsonp",
+         jsonp: "callback",
+         data: {
+             user: user,
+             pass: pw
+         },
+         success: function(result) {
+             if (result) {
+                 alert("Login Complete");
+                 $(location).attr('href', "loan.html");
+             }else{
+                 alert("It is wrong 1");
+             }
+         },
+         error: function(){
+             alert("It is wrong2");
+         }
+     });
+ }
+
+ function login3(){
+     var user=$("#user").val();
+     var pw=$("#pass").val()
+
+     $.ajax({
+         url: "http://localhost:8080/book/logIn",
+         type: "GET",
+         dataType: "jsonp",
+         jsonp: "callback",
+         data: {
+             user: user,
+             pass: pw
+         },
+         success: function(result) {
+             if (result) {
+                 alert("Login Complete");
+                 $(location).attr('href', "review.html");
+             }else{
+                 alert("It is wrong 1");
+             }
+         },
+         error: function(){
+             alert("It is wrong2");
+         }
+     });
+ }
+
          function logout(){
              var user=$("#user").val();
              var pw=$("#pass").val()
@@ -86,6 +140,11 @@
          }
 
         function enroll(){
+            var name=$("#name").val();
+            var sex=$("#sex").val();
+            var age=$("#age").val();
+            var email=$("#email").val();
+            var address=$("#address").val();
             var user=$("#user").val();
             var pw=$("#pass").val()
 
@@ -95,6 +154,11 @@
                 dataType: "jsonp",
                 jsonp: "callback",
                 data: {
+                    name: name,
+                    sex: sex,
+                    age: age,
+                    email: email,
+                    address: address,
                     user: user,
                     pass: pw
                 },

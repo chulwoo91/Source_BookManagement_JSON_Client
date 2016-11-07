@@ -51,40 +51,39 @@ function searchBook(){
                     var authorTd=$("<td></td>").text(result[i].author);
                     var priceTd=$("<td></td>").text(result[i].price);
 
-
                     var date = null;
                     var page= null;
                     var translator= null;
                     var supplement= null;
                     var publisher= null;
-                    //	var delTd = $("<td></td>");
-                    /*var delBtn=$("<input>");
-                     delBtn.attr("type", "button");
-                     delBtn.attr("value", "DELETE");
-                     delBtn.attr("onclick", "del(this)");
-                     delTd.append(delBtn);
-                     var updateTd = $("<td></td>");
-                     var updateBtn=$("<input>");
-                     updateBtn.attr("type", "button");
-                     updateBtn.attr("value", "UPDATE");
-                     updateBtn.attr("onclick", "function()");
-                     updateTd.append(updateBtn); */
 
                     var lonbtn=$("<input />").attr("type", "button").attr("value", "LOAN").attr("class", "btn-xs, btn-warning");
-                    lonbtn.on("click", function(){
-                        var id = $("#mytoggle").text(result.id);
+                    if(result[i].rent != null){
+                        lonbtn.attr("value", result[i].rent).attr("disabled", true);
+                    }
+
+                     lonbtn.on("click", function(){
+                        var id = $("#mytoggle").text();
+                        var isbn=$(this).parent().parent().attr("data-isbn");
 
                         $.ajax({
                             url:"http://localhost:8080/book/bookLoan",
                             type:"GET",
                             dataType:"jsonp",
                             jsonp:"callback",
+                            data:{
+                                id: id,
+                                isbn: isbn
+                            },
                             success:function (result) {
-
-                                if(id==null){
-                                    alert("You cannot rent this book");
-                                }else{
-
+                                if(result==true) {
+                                    alert("You can rent this book");
+                                    alert("Will you rent this book?");
+                                    alert("You have borrowed this book!")
+                                    $(location).attr("href", "loan.html");
+                                }
+                                else{
+                                    alert("It is wrong");
                                 }
                             },
                             error:function () {
@@ -96,20 +95,12 @@ function searchBook(){
                     });
                     var lonbtntd=$("<td></td>").append(lonbtn);
 
-                    var retbtn=$("<input />").attr("type", "button").attr("value", "RETURN").attr("class", "btn-xs, btn-danger");
-                    retbtn.on("click", function(){
-
-                        $(location).attr("href", "returnlog.html")
-
-                    });
-                    var retbtntd=$("<td></td>").append(retbtn);
 
                     tr.append(imgTd);
                     tr.append(titleTd);
                     tr.append(authorTd);
                     tr.append(priceTd);
                     tr.append(lonbtntd);
-                    tr.append(retbtntd);
 
                     $("tbody").append(tr);
                 };
@@ -120,10 +111,88 @@ function searchBook(){
         });
     }
 }
-/*	function del(Object){
- $(Object).parent().remove();
 
- } */
+function searchBookLoan(){
+    if(event.keyCode==13){
+        var id = $("#mytoggle").text();
+        var isbn=$(this).parent().parent().attr("data-isbn");
+
+        $.ajax({
+            url: "http://localhost:8080/book/bookStatus",
+            type: "GET",
+            dataType: "jsonp",
+            jsonp: "callback",
+            data: {
+                id: id
+            },
+            success: function(result){
+                $("tbody").empty();
+                for(var i=0; i<result.length; i++){
+
+                    var tr=$("<tr></tr>").attr("data-isbn", result[i].isbn);
+                    var img=$("<img />").attr("src", result[i].img);
+                    var imgTd=$("<td></td>").append(img);
+                    var div=$("<div></div>").attr("id", "detaildiv"+result[i].isbn);
+                    var titleTd=$("<td></td>").text(result[i].title).attr("id", "title").append(div);
+                    var authorTd=$("<td></td>").text(result[i].author);
+                    var priceTd=$("<td></td>").text(result[i].price);
+
+                    var date = null;
+                    var page= null;
+                    var translator= null;
+                    var supplement= null;
+                    var publisher= null;
+
+                    var returnbtn=$("<input />").attr("type", "button").attr("value", "RETURN").attr("class", "btn-xs, btn-warning");
+
+                    returnbtn.on("click", function(){
+                        var id = $("#mytoggle").text();
+                        var isbn=$(this).parent().parent().attr("data-isbn");
+
+                        $.ajax({
+                            url:"http://localhost:8080/book/bookReturn",
+                            type:"GET",
+                            dataType:"jsonp",
+                            jsonp:"callback",
+                            data:{
+                                id: id,
+                                isbn: isbn
+                            },
+                            success:function (result) {
+                                if(result==true) {
+                                    alert("Will you return this book?");
+                                    alert("You have successfully returned this book");
+                                    $(location).attr("href", "loanreturn.html");
+                                }
+                                else{
+                                    alert("It is wrong");
+                                }
+                            },
+                            error:function () {
+                                consol.log("세션 점검 실패");
+                            }
+                        });
+
+
+                    });
+                    var returnbtntd=$("<td></td>").append(returnbtn);
+
+
+                    tr.append(imgTd);
+                    tr.append(titleTd);
+                    tr.append(authorTd);
+                    tr.append(priceTd);
+                    tr.append(returnbtntd);
+
+                    $("tbody").append(tr);
+                };
+            },
+            error: function(){
+                alert("there is something wrong");
+            }
+        });
+    }
+}
 
 
 

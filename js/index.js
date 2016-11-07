@@ -85,7 +85,8 @@ function searchBook(){
 									isbn: isbn
 								},
 								success: function(){
-									alert("delete");
+									alert("Will You Delete This Book?");
+									alert("Book Completely Deleted");
 									$(obj).parent().parent().remove();
 								},
 								error: function(){
@@ -174,7 +175,7 @@ function searchBook(){
 									isbn: isbn
 								},
 								success: function(result){
-									alert("Read more");
+									alert("More Information About The Book");
 									page = $("<tr></tr>").text("쪽 수 : "+result[0].page);
 									date = $("<tr></tr>").text("발행일 : "+result[0].date);
 									translator = $("<tr></tr>").text("번역 : "+result[0].translator);
