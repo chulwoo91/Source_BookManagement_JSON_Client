@@ -75,26 +75,6 @@ function reviewBook(){
 
                         $(location).attr("href", "delete.html");
 
-                        var isbn=$(this).parent().parent().attr("data-isbn");
-                        var obj=this;
-
-                        $.ajax({
-                            url: "http://localhost:8080/book/commentDelete",
-                            type: "GET",
-                            dataType: "jsonp",
-                            jsonp: "callback",
-                            data: {
-                                isbn: isbn
-                            },
-                            success: function(){
-                                alert("delete");
-                                $(obj).parent().parent().remove();
-                            },
-                            error: function(){
-                                alert("Delete fail");
-                            }
-                        })
-
                     });
                     var deletebtntd=$("<td></td>").append(deletebtn);
 
@@ -135,21 +115,22 @@ function mySort(){
 
 
 function addreview(){
+    var id = $("#mytoggle").text();
+
     $.ajax({
         url: "http://localhost:8080/book/reviewInsert",
         type: "GET",
         dataType: "jsonp",
         jsonp: "callback",
         data: {
+            id: id,
             isbn: $("#isbn").val(),
-            id: $("#ID").val(),
             title: $("#Title").val(),
             review: $("#Review").val()
         },
         success: function(){
             alert("Review Addition Complete");
             $("isbn").val("")
-            $("id").val("")
             $("title").val("")
             $("review").val("")
             $(location).attr('href', "write.html")
